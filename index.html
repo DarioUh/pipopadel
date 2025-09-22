@@ -91,16 +91,37 @@
 </section>
 
 <section id="galeria">
-  <div class="section-content">
-    <h2>Viví la experiencia del pádel</h2>
-    <div class="row g-3 mt-3">
-      <div class="col-md-4"><img src="https://via.placeholder.com/400x300?text=Cancha+1" class="img-fluid rounded"></div>
-      <div class="col-md-4"><img src="https://via.placeholder.com/400x300?text=Cancha+2" class="img-fluid rounded"></div>
-      <div class="col-md-4"><img src="https://via.placeholder.com/400x300?text=Cancha+3" class="img-fluid rounded"></div>
+    <div class="section-content">
+      <h2>Viví la experiencia del pádel</h2>
+      <div class="row g-3 mt-3">
+        
+        <!-- Foto desde carpeta local -->
+        <div class="col-md-4">
+          <img src="img/cancha1.jpg" class="img-fluid rounded" alt="Cancha de pádel 1">
+        </div>
+        
+        <!-- Video desde carpeta local -->
+        <div class="col-md-4">
+          <video controls class="img-fluid rounded">
+            <source src="videos/cancha1.mp4" type="video/mp4">
+            Tu navegador no soporta el video.
+          </video>
+        </div>
+        
+        <!-- Reel de YouTube -->
+        <div class="col-md-4">
+          <div class="ratio ratio-16x9">
+            <iframe 
+              src="https://www.youtube.com/embed/M19ESytpfYU?si=meYEFaHu3jQ4Ys9V" 
+              title="Mesi jugando padel"
+              allowfullscreen>
+            </iframe>
+          </div>
+        </div>
+  
+      </div>
     </div>
-  </div>
 </section>
-
 <section id="ubicacion" class="text-white py-5">
   <div class="section-content">
     <h2>¿Dónde estamos?</h2>
