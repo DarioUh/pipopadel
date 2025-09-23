@@ -5,8 +5,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Pipo Pádel</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  
+  <link href="https://fonts.googleapis.com/css2?family=Electrolize&family=Zen+Dots&display=swap" rel="stylesheet">
   <style>
-    body { scroll-behavior: smooth; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin:0; padding:0; }
+    /* Fuente base para todo el texto */
+body {
+  font-family: 'Electrolize', sans-serif;
+}
+
+/* Fuente especial para títulos y navbar */
+h1, h2, h3, h4, h5, h6,
+.navbar-brand, .nav-link {
+  font-family: 'Zen Dots', sans-serif;
+  letter-spacing: 1px;
+}
+
+    body { scroll-behavior: smooth; margin:0; padding:0; }
     .navbar { background-color: #75ff5a; }
     .navbar a { color: #282d70 !important; font-weight: bold; }
     section { height: 100vh; display: flex; align-items: center; justify-content: center; background-size: cover; background-position: center; background-repeat: no-repeat; position: relative; color: #000000; text-align: center; }
@@ -23,7 +37,8 @@
 }
     #tarifas { background-color: #ffffff; }
     #reservar { background-color: #ff0000; }
-    #galeria { background-color: #ffffff; }
+    #beneficios { background-color: #ffffff; }
+    #galeria { background-color: #5bff4c; }
     #ubicacion { background-color: #3a27e4; }
     #contacto { background-color: #ffffff; }
   </style>
@@ -33,7 +48,9 @@
 <!-- Navbar -->
 <nav class="navbar navbar-expand-lg fixed-top">
   <div class="container">
-    <a class="navbar-brand" href="#inicio">Pipo Pádel</a>
+    <a class="navbar-brand" href="#inicio">
+        <img src="img/logo.png" alt="Pipo Pádel" style="height:40px;">
+      </a>      
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -42,6 +59,7 @@
         <li class="nav-item"><a class="nav-link" href="#inicio">Inicio</a></li>
         <li class="nav-item"><a class="nav-link" href="#tarifas">Promos</a></li>
         <li class="nav-item"><a class="nav-link" href="#reservar">Reservar</a></li>
+        <li class="nav-item"><a class="nav-link" href="#beneficios">Beneficios</a></li>
         <li class="nav-item"><a class="nav-link" href="#galeria">Galería</a></li>
         <li class="nav-item"><a class="nav-link" href="#ubicacion">Ubicación</a></li>
         <li class="nav-item"><a class="nav-link" href="#contacto">Contacto</a></li>
@@ -58,37 +76,82 @@
     <h1></h1>
     <h1></h1>
     <h1></h1>
-    <p>🎾 ¡Ya podés jugar al pádel en pleno centro de La Quiaca!</p>
-    <a href="#reservar" class="btn btn-whatsapp btn-lg mt-3">Reservá tu turno</a>
   </div>
 </section>
 
 <section id="tarifas">
   <div class="section-content">
-    <h2>Tarifas y Promociones mes de Septiembre y Octubre 2025</h2>
-    <p>Precios accesibles y beneficios especiales para que nadie se quede sin jugar.</p>
-    <ul>
-      <li>⏰ Mañanas de 7 a 14 hs: $7.000</li>
-      <li>🌞 Tardes: $10.000</li>
-      <li>💡 Con luz: $11.000</li>
-      <li>🏓 Alquiler de paletas y pelotas</li>
-    </ul>
-    <h5>Beneficios:</h5>
-    <ul>
-      <li>🎓 Estudiantes: 25% OFF en el alquiler de cancha. Presentar 3 credenciales o DNI de menores de 18 años.</li>      
-      <li>👨‍👩‍👧‍👦 Promo familiar: vení con 3 familiares + 1 amigo y obtené 25% de descuento</li>
-      <li>⚡ Cupos limitados → reservá ahora</li>
-    </ul>
+    <div class="card bg-white bg-opacity-75 shadow-lg p-4 rounded-4">
+        <h2>Tarifas y Promociones mes de Septiembre y Octubre 2025</h2>
+        <p>Precios accesibles y beneficios especiales para que nadie se quede sin jugar.</p>
+        <ul>
+        <li>⏰ Mañanas de 7 a 14 hs: $7.000</li>
+        <li>🌞 Tardes: $10.000</li>
+        <li>💡 Con luz: $11.000</li>
+        <li>🏓 Alquiler de paletas</li>
+        </ul>
+        <h5>Beneficios:</h5>
+        <ul>
+        <li>🎓 Estudiantes: 25% OFF en el alquiler de cancha. Presentar 3 credenciales o DNI de menores de 18 años.</li>      
+        <li>👨‍👩‍👧‍👦 Promo familiar: vení con 3 familiares + 1 amigo y obtené 25% de descuento</li>
+        <li>⚡ Cupos limitados → reservá ahora</li>
+        </ul>
+    </div>
   </div>
 </section>
 
 <section id="reservar" class="text-white py-5">
   <div class="section-content">
-    <h2>Reservá en segundos</h2>
-    <p>Tu partido está a un clic. Mandanos un mensaje y asegurá tu turno.</p>
-    <a href="https://wa.me/5493885629120" target="_blank" class="btn btn-whatsapp btn-lg">Reservar por WhatsApp</a>
+    <div class="card bg-white bg-opacity-75 shadow-lg p-4 rounded-4">
+        <h2>🎾 ¡Ya podés jugar al pádel en pleno centro de La Quiaca!</h2>
+        <p>Tu partido está a un clic. Mandanos un mensaje y asegurá tu turno.</p>
+        <a href="https://wa.me/5493885629120" target="_blank" class="btn btn-whatsapp btn-lg">Reservar tu turno</a>
+    </div>
   </div>
 </section>
+
+<section id="beneficios" class="py-5 text-center text-white" style="background-image: url('img/bentajas.jpg'); background-size: cover; background-position: center;">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-10">
+          <div class="card bg-white bg-opacity-75 shadow-lg p-4 rounded-4">
+            <h2 class="mb-3">¿Por qué elegir pádel?</h2>
+            <p>
+              El pádel es un deporte tan completo que muchos lo comparan con la natación 
+              por la cantidad de músculos que pone en acción. Es una actividad integral que mejora tu salud física, mental y social. Trabajás todo el cuerpo casi sin darte cuenta.
+            </p>
+            <p>               <strong>💪 Beneficios Físicos</strong><br>
+                
+                <strong>Salud cardiovascular:</strong> fortalece el corazón, mejora la circulación y ayuda a regular la presión arterial y el colesterol.<br>
+                
+                <strong>Quema calórica:</strong> en una hora podés gastar entre 400 y 700 calorías, ideal para controlar el peso.<br>
+                
+                <strong>Músculos y articulaciones fuertes:</strong> activa piernas, brazos y core, mejorando fuerza, resistencia y estabilidad.<br>
+                
+                <strong>Agilidad y coordinación:</strong> los cambios rápidos de dirección refuerzan reflejos, equilibrio y motricidad.<br>
+                
+                <strong>Prevención:</strong> reduce el riesgo de enfermedades crónicas como diabetes, hipertensión y problemas cardíacos.<br>
+                
+                <strong>🧠 Beneficios Mentales y Sociales</strong><br>
+                
+                <strong>Estrés bajo control:</strong> libera endorfinas que reducen la ansiedad y elevan el ánimo.<br>
+                
+                <strong>Sueño reparador:</strong> el ejercicio favorece un descanso profundo y de calidad.<br>
+                
+                <strong>Socialización:</strong> es un deporte en equipo que facilita conocer gente y compartir.<br>
+                
+                <strong>Niños y jóvenes:</strong> fomenta la independencia, la autoconfianza y el desarrollo personal.<br> 
+            </p>
+            <p>
+              Lo mejor: es un deporte <strong>inclusivo</strong>, ideal para todas las edades 
+              y niveles, que fomenta la amistad, el trabajo en equipo y la buena energía. ⚡
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
 
 <section id="galeria">
     <div class="section-content">
@@ -124,28 +187,32 @@
 </section>
 <section id="ubicacion" class="text-white py-5">
   <div class="section-content">
-    <h2>¿Dónde estamos?</h2>
-    <p>Dirección: San Juan 376, entre Santa Fe y Avenida España</p>
-    <p>Fácil de llegar desde cualquier punto de la ciudad</p>
-    <div class="ratio ratio-16x9 mt-3">
-        <iframe 
-          src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d180.19350301337195!2d-65.6001753!3d-22.1059954!3m2!1i1024!2i768!4f13.1!5e1!3m2!1ses!2sar!4v1758553211921!5m2!1ses!2sar" 
-          style="border:0;" 
-          allowfullscreen="" 
-          loading="lazy" 
-          referrerpolicy="no-referrer-when-downgrade">
-        </iframe>
-      </div>          
+    <div class="card bg-white bg-opacity-75 shadow-lg p-4 rounded-4">
+        <h2>¿Dónde estamos?</h2>
+        <p>Dirección: San Juan 376, entre Santa Fe y Avenida España</p>
+        <p>Fácil de llegar desde cualquier punto de la ciudad</p>
+        <div class="ratio ratio-16x9 mt-3">
+            <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d180.19350301337195!2d-65.6001753!3d-22.1059954!3m2!1i1024!2i768!4f13.1!5e1!3m2!1ses!2sar!4v1758553211921!5m2!1ses!2sar" 
+            style="border:0;" 
+            allowfullscreen="" 
+            loading="lazy" 
+            referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+        </div>  
+    </div>        
   </div>
 </section>
 
 <section id="contacto">
   <div class="section-content">
-    <h2>Contacto</h2>
-    <p>Reservá, consultá promos o escribinos directamente:</p>
-    <p>📲 WhatsApp: <a href="https://wa.me/5493885629120" target="_blank">+54 9 388 562 9120</a></p>
-    <p>📷 Instagram: <a href="#">@pipopadel</a></p>
-    <p>📘 Facebook: <a href="#">Pipo Pádel</a></p>
+    <div class="card bg-white bg-opacity-75 shadow-lg p-4 rounded-4">
+        <h2>Contacto</h2>
+        <p>Reservá, consultá promos o escribinos directamente:</p>
+        <p>📲 WhatsApp: <a href="https://wa.me/5493885629120" target="_blank">+54 9 388 562 9120</a></p>
+        <p>📷 Instagram: <a href="#">@pipopadel</a></p>
+        <p>📘 Facebook: <a href="#">Pipo Pádel</a></p>
+    </div>
   </div>
 </section>
 
