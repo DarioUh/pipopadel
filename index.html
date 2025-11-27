@@ -94,6 +94,30 @@
       max-width:100vw;
       height:auto;
     }
+/* TOP CONTROLS (modo noche + reservar) */
+.top-controls{
+  position: fixed;
+  top: 18px;
+  right: 18px;
+  z-index: 99999;
+  display: flex;
+  gap: 12px;
+}
+
+.control-btn{
+  background: rgba(0,0,0,0.55);
+  color: #fff;
+  padding: 10px 16px;
+  border-radius: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  backdrop-filter: blur(4px);
+  transition: transform 0.25s ease;
+}
+
+.control-btn:hover{
+  transform: translateY(-3px);
+}
 
     /* Carousel */
     .carousel-item img{
@@ -174,8 +198,7 @@
   <section id="precios">
     <img src="img/video_top.png" class="png-overlay visible mt-3" alt="Decoración inferior">
     <div class="card-viewport">
-      <h3>Promo mes INAUGURACIÓN 2025</h3>
-      <p>Precios accesibles y beneficios especiales para que nadie se quede sin jugar.</p>
+      <h3>Precios - DICIEMBRE 2025</h3>
 
       <h4>⏱️ Precios por hora de juego</h4>
       <ul>
