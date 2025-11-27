@@ -5,10 +5,8 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Pipo Pádel</title>
 
-  <!-- Google Fonts correctas -->
+  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Rubik+Mono+One&family=Barlow+Condensed:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-  <link rel="stylesheet" href="style.css">
 
   <!-- Bootstrap 5 -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -30,17 +28,13 @@
       overflow-x: hidden;
       scroll-snap-type: y mandatory;
       background-color:#000;
-
-      /* Fuente general */
       font-family: 'Barlow Condensed', sans-serif;
     }
 
     /* Títulos */
-    h1, h2, h3 {
-      font-family: 'Rubik Mono One', sans-serif;
-    }
+    h1, h2, h3 { font-family: 'Rubik Mono One', sans-serif; }
 
-    /* fondo aleatorio y fade-in */
+    /* Fondo aleatorio + fade-in */
     body{
       background-size:cover;
       background-position:center;
@@ -51,13 +45,10 @@
     }
     body.fondo-listo{ opacity:1; }
 
-    /* modo oscuro */
-    body.dark{
-      --card-bg: var(--card-bg-dark);
-      color: #eee;
-    }
+    /* Modo oscuro */
+    body.dark{ --card-bg: var(--card-bg-dark); color: #eee; }
 
-    /* secciones full viewport */
+    /* Secciones full viewport */
     section{
       width:100%;
       min-height:100vh;
@@ -73,7 +64,7 @@
       overflow:hidden;
     }
 
-    /* tarjetas internas */
+    /* Tarjetas internas */
     .card-viewport{
       width:80%;
       max-width:1100px;
@@ -85,7 +76,7 @@
       transition: transform 0.6s cubic-bezier(.2,.9,.3,1), opacity 0.6s ease;
     }
 
-    /* logo */
+    /* Logo */
     .logo-large{
       width: 60vw;
       max-width: 680px;
@@ -94,7 +85,7 @@
       margin:auto;
     }
 
-    /* PNG overlays */
+    /* PNG overlays / animaciones */
     .png-overlay{
       width:100vw;
       max-width:none;
@@ -111,10 +102,10 @@
 
     .png-button{ background:none; border:0; padding:0; cursor:pointer; }
 
-    /* precios */
+    /* Precios */
     #precios .card-viewport{ width:80%; max-width:900px; }
 
-    /* carousel */
+    /* Carousel fotos */
     .carousel-item img{
       width:90%;
       max-height:600px;
@@ -134,18 +125,31 @@
       font-size:0.95rem;
     }
 
-    .video-wrapper{
-      width:90%;
-      max-width:1000px;
-      margin:auto;
-    }
-    .video-wrapper video{
+    /* Video full width (sección nueva) */
+    .video-section { padding: 40px 15px; }
+    .video-container {
       width:100%;
-      border-radius:12px;
+      margin:0 auto;
+      overflow:hidden;
+      border-radius:16px;
+      opacity:0;
+      transform: translateY(12px);
+      transition: opacity 1s ease, transform 1s cubic-bezier(.2,.9,.3,1);
+    }
+    .video-container.visible {
+      opacity:1;
+      transform: translateY(0);
+    }
+    .video-full {
+      width:100%;
+      height:auto;
+      display:block;
+      border-radius:0; /* quitar radio para que ocupe todo el ancho visualmente */
+      object-fit:cover;
       background:#000;
     }
 
-    /* floating WhatsApp */
+    /* Floating WhatsApp */
     .whats-float{
       position:fixed;
       right:20px;
@@ -163,7 +167,6 @@
       transition: transform 0.2s ease;
     }
     .whats-float:hover{ transform:translateY(-6px); }
-
     .whats-float img{ width:36px; height:36px; }
 
     .top-controls{
@@ -189,11 +192,11 @@
     .modal-backdrop.show{ opacity:0.4; }
 
     #countdown{
-      font-size:2rem; 
-      font-weight:700; 
+      font-size:2rem;
+      font-weight:700;
       text-shadow:1px 1px 4px rgba(0,0,0,0.6);
-      opacity:0; 
-      transform:translateY(10px); 
+      opacity:0;
+      transform:translateY(10px);
       transition:all .6s ease;
     }
     #countdown.visible{ opacity:1; transform:translateY(0); }
@@ -204,51 +207,50 @@
       .carousel-item img{ width:96%; max-height:380px; }
       .top-controls{ right:8px; top:8px; gap:6px; }
       .whats-float{ width:56px; height:56px; }
+      .video-container { border-radius:0; } /* full bleed on mobile */
     }
   </style>
 </head>
 <body>
 
-  <!-- TOP CONTROLS: modo noche + idioma + reservar -->
+  <!-- TOP CONTROLS: modo noche + reservar -->
   <div class="top-controls">
-    <div id="langSwitch" class="control-btn" onclick="toggleLang()">ES ▾</div>
     <div id="nightSwitch" class="control-btn" onclick="toggleDark()">🌙</div>
     <div class="control-btn" onclick="openReserve()">Reservar</div>
   </div>
 
   <!-- 1 PRESENTACIÓN -->
   <section id="presentacion">
-      <img src="img/logo-pipo.png" alt="Pipo Padel" class="logo-large png-overlay" />
+    <img src="img/logo-pipo.png" alt="Pipo Padel" class="logo-large png-overlay" />
   </section>
 
-  
   <!-- 2 PRECIOS -->
   <section id="precios">
     <div class="card-viewport">
-      <h3 data-i18n="precios_title">Promo mes INAUGURACIÓN 2025</h3>
-      <p data-i18n="precios_sub">Precios accesibles y beneficios especiales para que nadie se quede sin jugar.</p>
-        <h4>⏱️ Precios por hora de juego</h4>
-        <ul>
+      <h3>Promo mes INAUGURACIÓN 2025</h3>
+      <p>Precios accesibles y beneficios especiales para que nadie se quede sin jugar.</p>
+
+      <h4>⏱️ Precios por hora de juego</h4>
+      <ul>
         <li>⏰ Mañanas de 7 a 14 hs: $7.000</li>
         <li>🌞 Tardes: $10.000</li>
         <li>💡 Con luz: $12.000</li>
-        </ul>
+      </ul>
 
-        <h4>💪 Servicios adicionales</h4>
-        <ul>
+      <h4>💪 Servicios adicionales</h4>
+      <ul>
         <li>🏓 Alquiler de paletas $1.000 c/u por hora</li>
         <li>🥎 Te prestamos las pelotas!</li>
-        </ul>
-        <h5>🏅 Promo Nuevos Jugadores</h5>
-        <ul>
-        <li>🤝 Cuando un nuevo jugador se suma por primera vez a la cancha, 🎉 celebramos juntos con un 20% OFF en el alquiler de cualquier servicio.</li>
-        </ul>
-      </div>
+      </ul>
     </div>
   </section>
 
-  <!-- 3 (Cuenta regresiva): la dejamos intacta tal como pediste -->
-  <!-- Si querés activarla, descomentá y ajustá -->
+  <!-- DESCUENTO 20% -->
+  <section id="descuento">
+    <img src="img/descuento.png" alt="Promo para nuevos jugadores - 20% de descuento" class="logo-large png-overlay" />
+  </section>
+
+  <!-- 3 (Cuenta regresiva): la dejamos intacta (descomentá si querés) -->
   <!--
   <section id="countdown-section">
     <img src="img/tansolofaltan.png" alt="Tan solo faltan" class="png-overlay mb-4" />
@@ -260,10 +262,9 @@
   <!-- 4 UBICACIÓN -->
   <section id="ubicacion">
     <div class="card-viewport">
-      <h3 data-i18n="ubicacion_title">📍 ¿Dónde estamos?</h3>
-        <p>Dirección: San Juan 376, entre Santa Fe y Avenida España</p>
-        <p>Fácil de llegar desde cualquier punto de la ciudad</p>
-        <p> </p>
+      <h3>📍 ¿Dónde estamos?</h3>
+      <p>Dirección: San Juan 376, entre Santa Fe y Avenida España</p>
+      <p>Fácil de llegar desde cualquier punto de la ciudad</p>
       <div><button class="btn btn-primary" onclick="irUbicacion()">Ver en Maps</button></div>
     </div>
   </section>
@@ -299,142 +300,91 @@
 
   <!-- 6 CAROUSEL FOTOS (19 imágenes) -->
   <section id="carrousel">
-      <h3 data-i18n="galeria_title">📸 Tu lugar para vivir el pádel</h3>
+    <h3>📸 Tu lugar para vivir el pádel</h3>
 
-      <div id="carouselPipo" class="carousel slide" data-bs-ride="carousel">
-        <div class="carousel-inner">
-
-          <!-- item 1 active -->
-          <div class="carousel-item active">
-            <img src="img/carousel1.jpg" alt="Foto 1">
-            <div class="carousel-caption">Pipo Padel — Imagen 1</div>
-          </div>
-
-          <!-- items 2..19 -->
-          <div class="carousel-item"><img src="img/carousel2.jpg" alt="Foto 2"><div class="carousel-caption">Pipo Padel — Imagen 2</div></div>
-          <div class="carousel-item"><img src="img/carousel3.jpg" alt="Foto 3"><div class="carousel-caption">Pipo Padel — Imagen 3</div></div>
-          <div class="carousel-item"><img src="img/carousel4.jpg" alt="Foto 4"><div class="carousel-caption">Pipo Padel — Imagen 4</div></div>
-          <div class="carousel-item"><img src="img/carousel5.jpg" alt="Foto 5"><div class="carousel-caption">Pipo Padel — Imagen 5</div></div>
-          <div class="carousel-item"><img src="img/carousel6.jpg" alt="Foto 6"><div class="carousel-caption">Pipo Padel — Imagen 6</div></div>
-          <div class="carousel-item"><img src="img/carousel7.jpg" alt="Foto 7"><div class="carousel-caption">Pipo Padel — Imagen 7</div></div>
-          <div class="carousel-item"><img src="img/carousel8.jpg" alt="Foto 8"><div class="carousel-caption">Pipo Padel — Imagen 8</div></div>
-          <div class="carousel-item"><img src="img/carousel9.jpg" alt="Foto 9"><div class="carousel-caption">Pipo Padel — Imagen 9</div></div>
-          <div class="carousel-item"><img src="img/carousel10.jpg" alt="Foto 10"><div class="carousel-caption">Pipo Padel — Imagen 10</div></div>
-          <div class="carousel-item"><img src="img/carousel11.jpg" alt="Foto 11"><div class="carousel-caption">Pipo Padel — Imagen 11</div></div>
-          <div class="carousel-item"><img src="img/carousel12.jpg" alt="Foto 12"><div class="carousel-caption">Pipo Padel — Imagen 12</div></div>
-          <div class="carousel-item"><img src="img/carousel13.jpg" alt="Foto 13"><div class="carousel-caption">Pipo Padel — Imagen 13</div></div>
-          <div class="carousel-item"><img src="img/carousel14.jpg" alt="Foto 14"><div class="carousel-caption">Pipo Padel — Imagen 14</div></div>
-          <div class="carousel-item"><img src="img/carousel15.jpg" alt="Foto 15"><div class="carousel-caption">Pipo Padel — Imagen 15</div></div>
-          <div class="carousel-item"><img src="img/carousel16.jpg" alt="Foto 16"><div class="carousel-caption">Pipo Padel — Imagen 16</div></div>
-          <div class="carousel-item"><img src="img/carousel17.jpg" alt="Foto 17"><div class="carousel-caption">Pipo Padel — Imagen 17</div></div>
-          <div class="carousel-item"><img src="img/carousel18.jpg" alt="Foto 18"><div class="carousel-caption">Pipo Padel — Imagen 18</div></div>
-          <div class="carousel-item"><img src="img/carousel19.jpg" alt="Foto 19"><div class="carousel-caption">Pipo Padel — Imagen 19</div></div>
-
+    <div id="carouselPipo" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="img/carousel1.jpg" alt="Foto 1">
+          <div class="carousel-caption">Pipo Padel — Imagen 1</div>
         </div>
 
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselPipo" data-bs-slide="prev">
-          <span class="carousel-control-prev-icon"></span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselPipo" data-bs-slide="next">
-          <span class="carousel-control-next-icon"></span>
-        </button>
-
-        <div class="mt-3">
-          <small class="text-muted">Desliza para ver más fotos</small>
-        </div>
+        <!-- items 2..19 (ya en tu proyecto) -->
+        <div class="carousel-item"><img src="img/carousel2.jpg" alt="Foto 2"><div class="carousel-caption">Pipo Padel — Imagen 2</div></div>
+        <div class="carousel-item"><img src="img/carousel3.jpg" alt="Foto 3"><div class="carousel-caption">Pipo Padel — Imagen 3</div></div>
+        <div class="carousel-item"><img src="img/carousel4.jpg" alt="Foto 4"><div class="carousel-caption">Pipo Padel — Imagen 4</div></div>
+        <div class="carousel-item"><img src="img/carousel5.jpg" alt="Foto 5"><div class="carousel-caption">Pipo Padel — Imagen 5</div></div>
+        <div class="carousel-item"><img src="img/carousel6.jpg" alt="Foto 6"><div class="carousel-caption">Pipo Padel — Imagen 6</div></div>
+        <div class="carousel-item"><img src="img/carousel7.jpg" alt="Foto 7"><div class="carousel-caption">Pipo Padel — Imagen 7</div></div>
+        <div class="carousel-item"><img src="img/carousel8.jpg" alt="Foto 8"><div class="carousel-caption">Pipo Padel — Imagen 8</div></div>
+        <div class="carousel-item"><img src="img/carousel9.jpg" alt="Foto 9"><div class="carousel-caption">Pipo Padel — Imagen 9</div></div>
+        <div class="carousel-item"><img src="img/carousel10.jpg" alt="Foto 10"><div class="carousel-caption">Pipo Padel — Imagen 10</div></div>
+        <div class="carousel-item"><img src="img/carousel11.jpg" alt="Foto 11"><div class="carousel-caption">Pipo Padel — Imagen 11</div></div>
+        <div class="carousel-item"><img src="img/carousel12.jpg" alt="Foto 12"><div class="carousel-caption">Pipo Padel — Imagen 12</div></div>
+        <div class="carousel-item"><img src="img/carousel13.jpg" alt="Foto 13"><div class="carousel-caption">Pipo Padel — Imagen 13</div></div>
+        <div class="carousel-item"><img src="img/carousel14.jpg" alt="Foto 14"><div class="carousel-caption">Pipo Padel — Imagen 14</div></div>
+        <div class="carousel-item"><img src="img/carousel15.jpg" alt="Foto 15"><div class="carousel-caption">Pipo Padel — Imagen 15</div></div>
+        <div class="carousel-item"><img src="img/carousel16.jpg" alt="Foto 16"><div class="carousel-caption">Pipo Padel — Imagen 16</div></div>
+        <div class="carousel-item"><img src="img/carousel17.jpg" alt="Foto 17"><div class="carousel-caption">Pipo Padel — Imagen 17</div></div>
+        <div class="carousel-item"><img src="img/carousel18.jpg" alt="Foto 18"><div class="carousel-caption">Pipo Padel — Imagen 18</div></div>
+        <div class="carousel-item"><img src="img/carousel19.jpg" alt="Foto 19"><div class="carousel-caption">Pipo Padel — Imagen 19</div></div>
       </div>
+
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselPipo" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselPipo" data-bs-slide="next">
+        <span class="carousel-control-next-icon"></span>
+      </button>
+
+      <div class="mt-3"><small class="text-muted">Desliza para ver más fotos</small></div>
+    </div>
   </section>
-<!-- 7 VIDEOS (reemplaza antigua sección música) -->
-  <section id="videos">
-    <div class="card-viewport">
-      <h3 data-i18n="videos_title">📹 Videos</h3>
-      <p data-i18n="videos_sub">Mirá estos Momentos DESTACADOS!</p>
 
-      <div id="videoCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="false">
-        <div class="carousel-inner">
+  <!-- 7 VIDEO (UN SOLO VIDEO FULL-WIDTH) -->
+  <section id="video" class="video-section">
+    <h3 class="text-center mb-3">📹 Conocé nuestra cancha en acción</h3>
 
-          <div class="carousel-item active">
-            <div class="video-wrapper">
-              <video controls preload="metadata" data-video-id="1">
-                <source src="vid/video1.mp4" type="video/mp4">
-                Tu navegador no soporta video.
-              </video>
-            </div>
-            <div class="carousel-caption">Pipo Padel — Presentación</div>
-          </div>
-
-          <div class="carousel-item">
-            <div class="video-wrapper">
-              <video controls preload="metadata" data-video-id="2">
-                <source src="vid/video2.mp4" type="video/mp4">
-              </video>
-            </div>
-            <div class="carousel-caption">Video 2 — Canchas en acción</div>
-          </div>
-
-          <div class="carousel-item">
-            <div class="video-wrapper">
-              <video controls preload="metadata" data-video-id="3">
-                <source src="video3.mp4" type="video/mp4">
-              </video>
-            </div>
-            <div class="carousel-caption">Video 3 — Entrenamiento y tips</div>
-          </div>
-
-          <div class="carousel-item">
-            <div class="video-wrapper">
-              <video controls preload="metadata" data-video-id="4">
-                <source src="video4.mp4" type="video/mp4">
-              </video>
-            </div>
-            <div class="carousel-caption">Video 4 — Testimonios</div>
-          </div>
-
-        </div>
-
-        <button class="carousel-control-prev" type="button" data-bs-target="#videoCarousel" data-bs-slide="prev">
-          <span class="carousel-control-prev-icon"></span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#videoCarousel" data-bs-slide="next">
-          <span class="carousel-control-next-icon"></span>
-        </button>
-      </div>
+    <div class="video-container" id="videoContainer">
+      <!-- Ruta original en tu HTML era 'vid/video1.mp4' -->
+      <video
+        src="vid/video1.mp4"
+        class="video-full"
+        autoplay
+        muted
+        loop
+        playsinline
+        controls
+        preload="metadata"
+      ></video>
     </div>
   </section>
 
   <!-- 8 CONTACTO / CONFIRMAR -->
-<section id="contacto">
-  <div class="card-viewport">
-    <h3 class="mb-3">¡Conectemos!</h3>
+  <section id="contacto">
+    <div class="card-viewport">
+      <h3 class="mb-3">¡Conectemos!</h3>
 
-    <p>
-      Unite al grupo de whatsapp de <strong>Pipo Pádel</strong>.<br>
-      ✅ Consultá la disponibilidad de la cancha y promociones.<br>
-      ✅ Buscá pareja para jugar o unirte a partidos.<br>
-      ✅ Enterarte de torneos, clases y eventos.<br>
-    </p>
+      <p>
+        Unite al grupo de whatsapp de <strong>Pipo Pádel</strong>.<br>
+        ✅ Consultá la disponibilidad de la cancha y promociones.<br>
+        ✅ Buscá pareja para jugar o unirte a partidos.<br>
+        ✅ Enterarte de torneos, clases y eventos.<br>
+      </p>
 
-    <!-- Redes sociales -->
-    <div class="d-flex justify-content-center gap-4 mt-3 mb-3">
-      <a href="https://chat.whatsapp.com/CfHrgWIgR5Y126yJnMgH2y" target="_blank">
-        <img src="img/whatsapp.png" alt="WhatsApp" width="50" height="50">
-      </a>
-      <a href="https://www.instagram.com/pipo_full" target="_blank">
-        <img src="img/instagram.png" alt="Instagram" width="50" height="50">
-      </a>
-      <a href="https://www.facebook.com/pipopadel" target="_blank">
-        <img src="img/facebook.png" alt="Facebook" width="50" height="50">
-      </a>
+      <!-- Redes sociales -->
+      <div class="d-flex justify-content-center gap-4 mt-3 mb-3">
+        <a href="https://chat.whatsapp.com/CfHrgWIgR5Y126yJnMgH2y" target="_blank"><img src="img/whatsapp.png" alt="WhatsApp" width="50" height="50"></a>
+        <a href="https://www.instagram.com/pipo_full" target="_blank"><img src="img/instagram.png" alt="Instagram" width="50" height="50"></a>
+        <a href="https://www.facebook.com/pipopadel" target="_blank"><img src="img/facebook.png" alt="Facebook" width="50" height="50"></a>
+      </div>
+
+      <!-- Botón único: PEDIR TURNO -->
+      <div class="text-center mt-2">
+        <button class="btn btn-outline-primary" onclick="openReserve()">Pedir Turno</button>
+      </div>
     </div>
-
-    <!-- Botón único: PEDIR TURNO -->
-    <div class="text-center mt-2">
-      <button class="btn btn-outline-primary" onclick="openReserve()">Pedir Turno</button>
-    </div>
-
-  </div>
-</section>
-
+  </section>
 
   <!-- FLOATING WHATSAPP -->
   <div class="whats-float" title="Enviar WhatsApp" onclick="contactar()">
@@ -454,7 +404,14 @@
             <div class="mb-2"><input required class="form-control" name="name" placeholder="Nombre"></div>
             <div class="mb-2"><input required class="form-control" name="phone" placeholder="Teléfono"></div>
             <div class="mb-2"><input type="date" class="form-control" name="date"></div>
-            <div class="mb-2"><select class="form-control" name="hour"><option>7:00</option><option>8:00</option><option>9:00</option></select></div>
+            <div class="mb-2">
+              <select class="form-control" name="hour">
+                <option>7:00</option><option>8:00</option><option>9:00</option><option>10:00</option><option>11:00</option>
+                <option>12:00</option><option>13:00</option><option>14:00</option><option>15:00</option><option>16:00</option>
+                <option>17:00</option><option>18:00</option><option>19:00</option><option>20:00</option><option>21:00</option>
+                <option>22:00</option><option>23:00</option><option>24:00</option>
+              </select>
+            </div>
             <div class="mb-2"><textarea class="form-control" name="note" placeholder="Observaciones"></textarea></div>
           </form>
         </div>
@@ -470,9 +427,9 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
   <script>
-    /* ------------------ FONDO ALEATORIO + FADE-IN ------------------ */
+    /* ------------------ FONDO ALEATORIO + FADE-IN (1..5) ------------------ */
     (function(){
-      const n = Math.ceil(Math.random() * 13); // 1..13
+      const n = Math.ceil(Math.random() * 5); // 1..5
       const bg = `img/fondo${n}.jpg`;
       const img = new Image();
       img.src = bg;
@@ -480,33 +437,15 @@
         document.body.style.backgroundImage = `url('${bg}')`;
         document.body.classList.add('fondo-listo');
       };
-      // fallback if won't load quickly
       setTimeout(()=>{ if(!document.body.classList.contains('fondo-listo')) { document.body.style.backgroundImage = `url('img/fondo1.jpg')`; document.body.classList.add('fondo-listo'); } }, 2000);
     })();
-
-    /* ------------------ VIDEOS: PAUSAR AL CAMBIAR SLIDE ------------------ */
-    (function(){
-      const videoCarousel = document.getElementById('videoCarousel');
-      if(videoCarousel){
-        videoCarousel.addEventListener('slide.bs.carousel', function(e){
-          // pausar todos los videos dentro del carousel
-          const videos = videoCarousel.querySelectorAll('video');
-          videos.forEach(v => { v.pause(); v.currentTime = 0; });
-        });
-      }
-    })();
-
-    /* ------------------ CAROUSEL FOTOS (no config extra needed) ------------------ */
-
-    /* ------------------ PLAY/PAUSE SONG (ya no usado) ------------------ */
-    function playSong(){ const s=document.getElementById('song'); if(!s) return; if(s.paused) s.play(); else s.pause(); }
 
     /* ------------------ UBICACIÓN ------------------ */
     function irUbicacion(){ window.open('https://maps.app.goo.gl/u5b7vpfrTuQt9EkP6', '_blank'); }
 
     /* ------------------ CONTACTAR (WhatsApp) ------------------ */
     function contactar(){
-      const msj = encodeURIComponent("¡Hola! Quiero reservar en Pipo Padel 🎾");
+      const msj = encodeURIComponent("🎾¡Hola! Quiero reservar en Pipo Padel ");
       window.open(`https://wa.me/5493885629120?text=${msj}`, '_blank');
     }
 
@@ -515,7 +454,6 @@
     function submitReserve(){
       const f = document.getElementById('reserveForm');
       if(!f.reportValidity()) return;
-      // aquí podés enviar por fetch a tu servidor; por ahora abrimos WhatsApp con datos
       const data = new FormData(f);
       const msg = `Reserva: ${data.get('name')} - ${data.get('phone')} - ${data.get('date')} ${data.get('hour')} - ${data.get('note') || ''}`;
       window.open(`https://wa.me/5493885629120?text=${encodeURIComponent(msg)}`,'_blank');
@@ -524,7 +462,6 @@
     }
 
     /* ------------------ SCROLL ANIMATIONS + PARALLAX SUAVE EN PNGs ------------------ */
-    // IntersectionObserver para fade/zoom-in
     const io = new IntersectionObserver((entries)=>{
       entries.forEach(e=>{
         if(e.isIntersecting){
@@ -535,13 +472,12 @@
 
     document.querySelectorAll('.png-overlay, .logo-large, .card-viewport img').forEach(el => io.observe(el));
 
-    // parallax sutil: mueve PNGs en base a su posición
+    // Parallax sutil on PNGs
     let ticking = false;
     function parallaxTick(){
       document.querySelectorAll('.png-overlay').forEach(el=>{
         const rect = el.getBoundingClientRect();
         const centerOffset = rect.top + rect.height/2 - window.innerHeight/2;
-        // limit factor
         const max = 40;
         const factor = Math.max(-max, Math.min(max, -centerOffset * 0.08));
         el.style.transform = `translateY(${factor}px) scale(${ el.classList.contains('visible')?1:1.02 })`;
@@ -552,87 +488,54 @@
       if(!ticking){ requestAnimationFrame(parallaxTick); ticking = true; }
     }, { passive:true });
 
-    /* ------------------ COUNTDOWN (dejado tal cual si lo activás) ------------------ */
-    // (Tenés tu código de countdown arriba en mensajes previos; si querés lo sumo aquí exactamente.)
+    /* ------------------ PAUSE VIDEOS al salir de viewport ------------------ */
+    function observeVideos(){
+      const vids = document.querySelectorAll('video');
+      const vObserver = new IntersectionObserver((entries)=>{
+        entries.forEach(en=>{
+          const video = en.target;
+          if(!en.isIntersecting && !video.paused){ video.pause(); }
+        });
+      }, { threshold: 0.4 });
+      vids.forEach(v => vObserver.observe(v));
+    }
 
-    /* ------------------ PAUSE VIDEOS al cambiar sección (si hay) ------------------ */
-    // pausamos videos fuera de viewport
-    const vids = document.querySelectorAll('video');
-    const vObserver = new IntersectionObserver((entries)=>{
-      entries.forEach(en=>{
-        const video = en.target;
-        if(!en.isIntersecting && !video.paused){ video.pause(); }
-      });
-    }, { threshold: 0.4 });
-    vids.forEach(v => vObserver.observe(v));
-
-    /* ------------------ MODO NOCHE + IDIOMA (simple) ------------------ */
+    /* ------------------ MODO NOCHE ------------------ */
     function toggleDark(){
       document.body.classList.toggle('dark');
-      // guardar preferencia
-      const val = document.body.classList.contains('dark') ? '1' : '0';
-      try{ localStorage.setItem('pipo_dark', val); }catch(e){}
+      try{ localStorage.setItem('pipo_dark', document.body.classList.contains('dark') ? '1' : '0'); }catch(e){}
     }
-    // idioma simple (ES / EN). Cambia textos marcados con data-i18n
-    const i18n = {
-      en: {
-        presentacion_text: "Welcome to Pipo Pádel — your place to play and have fun.",
-        videos_title: "Videos",
-        videos_sub: "Watch clips of the club and the courts.",
-        precios_title: "Opening Promo 2025",
-        precios_sub: "Accessible prices and special benefits.",
-        ubicacion_title: "Location",
-        beneficios_text: "Benefits for members and special promos.",
-        galeria_title: "Your place tu live pádel"
-      },
-      es: {
-        presentacion_text: "Bienvenidos a Pipo Pádel — tu lugar para jugar y divertirte.",
-        videos_title: "📹 Videos",
-        videos_sub: "Mirá estos clips del predio y las canchas.",
-        precios_title: "Promo INAUGURACIÓN 2025",
-        precios_sub: "Precios accesibles y beneficios especiales para que nadie se quede sin jugar.",
-        ubicacion_title: "📍 Ubicación",
-        beneficios_text: "Beneficios para socios y promociones especiales.",
-        galeria_title: "📸 Tu lugar para vivir el pádel"
-      }
-    };
-    let currentLang = localStorage.getItem('pipo_lang') || 'es';
-    function applyLang(){
-      document.getElementById('langSwitch').innerText = (currentLang==='es') ? 'ES ▾' : 'EN ▾';
-      document.querySelectorAll('[data-i18n]').forEach(el=>{
-        const key = el.getAttribute('data-i18n');
-        if(i18n[currentLang] && i18n[currentLang][key]) el.innerText = i18n[currentLang][key];
-      });
-    }
-    function toggleLang(){
-      currentLang = (currentLang==='es') ? 'en' : 'es';
-      try{ localStorage.setItem('pipo_lang', currentLang); }catch(e){}
-      applyLang();
-    }
-    // aplicar preferencias guardadas
-    (function initPrefs(){
-      // dark
-      try{
-        const dark = localStorage.getItem('pipo_dark');
-        if(dark==='1') document.body.classList.add('dark');
-      }catch(e){}
-      // lang
-      applyLang();
-    })();
 
-    /* ------------------ INIT: marcar elementos observados y asegurar que fondo se ve si tarda en cargar ------------------ */
+    /* ------------------ INIT ------------------ */
     document.addEventListener('DOMContentLoaded', ()=>{
       // marcar pngs visibles que ya están en view
       document.querySelectorAll('.png-overlay, .logo-large').forEach(el=>{
-        // si ya visible en viewport
         const r = el.getBoundingClientRect();
         if(r.top < window.innerHeight && r.bottom > 0) el.classList.add('visible');
       });
-      // small safety: if background didn't trigger fade, force it
-      setTimeout(()=>{ document.body.classList.add('fondo-listo'); }, 2000);
-    });
 
+      // mostrar video container con animación cuando entra en viewport
+      const videoContainer = document.getElementById('videoContainer');
+      if(videoContainer){
+        const vIo = new IntersectionObserver((entries)=>{
+          entries.forEach(en=>{
+            if(en.isIntersecting) en.target.classList.add('visible');
+          });
+        }, { threshold: 0.25 });
+        vIo.observe(videoContainer);
+      }
+
+      // ensure background fade if slow
+      setTimeout(()=>{ document.body.classList.add('fondo-listo'); }, 2000);
+
+      // observe videos for auto-pause
+      observeVideos();
+
+      // restore dark pref
+      try{ if(localStorage.getItem('pipo_dark') === '1') document.body.classList.add('dark'); }catch(e){}
+    });
   </script>
 </body>
 </html>
+
 
