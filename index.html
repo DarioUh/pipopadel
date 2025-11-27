@@ -326,7 +326,6 @@
 
   <!-- 7 CAROUSEL FOTOS (19 imágenes) -->
   <section id="carrousel">
-    <div class="card-viewport">
       <h3 data-i18n="galeria_title">📸 Galería</h3>
 
       <div id="carouselPipo" class="carousel slide" data-bs-ride="carousel">
@@ -371,7 +370,6 @@
           <small class="text-muted">Desliza para ver más fotos</small>
         </div>
       </div>
-    </div>
   </section>
 
   <!-- 8 CONTACTO / CONFIRMAR -->
@@ -422,7 +420,7 @@
   <script>
     /* ------------------ FONDO ALEATORIO + FADE-IN ------------------ */
     (function(){
-      const n = Math.ceil(Math.random() * 12); // 1..12
+      const n = Math.ceil(Math.random() * 13); // 1..13
       const bg = `img/fondo${n}.jpg`;
       const img = new Image();
       img.src = bg;
@@ -452,12 +450,12 @@
     function playSong(){ const s=document.getElementById('song'); if(!s) return; if(s.paused) s.play(); else s.pause(); }
 
     /* ------------------ UBICACIÓN ------------------ */
-    function irUbicacion(){ window.open('https://maps.app.goo.gl/joLRQpCa2xRZNKfU8', '_blank'); }
+    function irUbicacion(){ window.open('https://maps.app.goo.gl/u5b7vpfrTuQt9EkP6', '_blank'); }
 
     /* ------------------ CONTACTAR (WhatsApp) ------------------ */
     function contactar(){
       const msj = encodeURIComponent("¡Hola! Quiero reservar en Pipo Padel 🎾");
-      window.open(`https://wa.me/5493884463830?text=${msj}`, '_blank');
+      window.open(`https://wa.me/5493885629120?text=${msj}`, '_blank');
     }
 
     /* ------------------ RESERVAS (modal) ------------------ */
@@ -468,7 +466,7 @@
       // aquí podés enviar por fetch a tu servidor; por ahora abrimos WhatsApp con datos
       const data = new FormData(f);
       const msg = `Reserva: ${data.get('name')} - ${data.get('phone')} - ${data.get('date')} ${data.get('hour')} - ${data.get('note') || ''}`;
-      window.open(`https://wa.me/5493884463830?text=${encodeURIComponent(msg)}`,'_blank');
+      window.open(`https://wa.me/5493885629120?text=${encodeURIComponent(msg)}`,'_blank');
       bootstrap.Modal.getInstance(document.getElementById('reserveModal')).hide();
       f.reset();
     }
