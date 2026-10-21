@@ -23,6 +23,56 @@
       --pipo-soft: #f2f5fb;
       --pipo-line: #dfe6f4;
     }
+    .dupla-card {
+  height: 100%;
+  overflow: hidden;
+  border: 1px solid var(--pipo-line);
+  border-radius: 1.25rem;
+  background: #fff;
+  box-shadow: 0 12px 30px rgba(10, 30, 75, .08);
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+
+.dupla-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 18px 38px rgba(10, 30, 75, .14);
+}
+
+.dupla-photo,
+.dupla-photo-placeholder {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+}
+
+.dupla-photo {
+  display: block;
+  object-fit: cover;
+  object-position: center;
+  background: #e9eef8;
+}
+
+.dupla-photo-placeholder {
+  display: grid;
+  place-items: center;
+  color: #71809d;
+  background:
+    linear-gradient(135deg, rgba(24,75,255,.10), rgba(255,23,56,.08)),
+    #edf1f8;
+}
+
+.dupla-name {
+  color: var(--pipo-navy);
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 1.65rem;
+  font-weight: 900;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.dupla-players {
+  color: #65738e;
+  font-size: .9rem;
+}
 
     html { scroll-behavior: smooth; }
     body {
@@ -34,7 +84,7 @@
       font-family: "Barlow Condensed", system-ui, sans-serif;
       letter-spacing: -.02em;
     }
-    section { scroll-margin-top: 86px; }
+    section, #fixture, #resultados, #tabla, #galeria { scroll-margin-top: 86px; }
 
     .navbar-rookie {
       background: rgba(7, 28, 73, .96);
@@ -190,6 +240,69 @@
     .accordion-button:not(.collapsed) { color: var(--pipo-blue); background: #eef3ff; box-shadow: none; }
     .accordion-button:focus { box-shadow: 0 0 0 .2rem rgba(24,75,255,.12); }
     .accordion-item { border-color: var(--pipo-line); }
+    .schedule-card,
+    .result-card {
+      height: 100%;
+      overflow: hidden;
+      border: 1px solid var(--pipo-line);
+      border-radius: 1.25rem;
+      background: #fff;
+      box-shadow: 0 14px 34px rgba(10, 30, 75, .08);
+    }
+    .schedule-time {
+      display: inline-flex;
+      align-items: center;
+      padding: .38rem .72rem;
+      color: #fff;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--pipo-red), #c80829);
+      font-family: "Barlow Condensed", sans-serif;
+      font-size: 1.15rem;
+      font-weight: 900;
+      letter-spacing: .04em;
+    }
+    .matchup {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+      gap: .75rem;
+      align-items: center;
+    }
+    .matchup strong {
+      color: var(--pipo-navy);
+      font-family: "Barlow Condensed", sans-serif;
+      font-size: clamp(1.35rem, 3vw, 1.8rem);
+      font-weight: 900;
+      line-height: 1;
+      text-transform: uppercase;
+    }
+    .matchup .vs { color: var(--pipo-red); font-weight: 900; }
+    .result-photo {
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      object-fit: cover;
+      background: #e9eef8;
+    }
+    .photo-placeholder {
+      display: grid;
+      min-height: 230px;
+      place-items: center;
+      color: #70809e;
+      background:
+        linear-gradient(135deg, rgba(24,75,255,.08), rgba(255,23,56,.07)),
+        #edf1f8;
+    }
+    .score-pill {
+      display: inline-block;
+      padding: .42rem .78rem;
+      color: #fff;
+      border-radius: .75rem;
+      background: linear-gradient(135deg, var(--pipo-blue-2), var(--pipo-blue));
+      font-family: "Barlow Condensed", sans-serif;
+      font-size: 1.45rem;
+      font-weight: 900;
+      letter-spacing: .03em;
+    }
+    .winner-label { color: var(--pipo-red); font-size: .76rem; font-weight: 900; letter-spacing: .1em; text-transform: uppercase; }
     .footer { color: #bdcae6; background: #061636; }
     .footer a { color: #fff; }
 
@@ -223,10 +336,11 @@
         <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
           <li class="nav-item"><a class="nav-link" href="#informacion">Información</a></li>
           <li class="nav-item"><a class="nav-link" href="#fixture">Fixture</a></li>
+          <li class="nav-item"><a class="nav-link" href="#resultados">Resultados</a></li>
           <li class="nav-item"><a class="nav-link" href="#tabla">Tabla</a></li>
           <li class="nav-item"><a class="nav-link" href="#galeria">Galería</a></li>
           <li class="nav-item"><a class="nav-link" href="#contacto">Contacto</a></li>
-          <li class="nav-item ms-lg-2"><a class="btn btn-sm btn-danger fw-bold px-3" href="https://wa.me/543885629120?text=Hola%20PIPO%20P%C3%A1del%2C%20quiero%20consultar%20por%20la%20Rookie%20Cup%202026" target="_blank" rel="noopener">Quiero participar</a></li>
+          <li class="nav-item ms-lg-2"><a class="btn btn-sm btn-danger fw-bold px-3" href="#fixture">Ver partidos</a></li>
         </ul>
       </div>
     </div>
@@ -240,12 +354,12 @@
           <h1 class="mb-3">TU PRIMERA COPA<br>EMPIEZA ACÁ.</h1>
           <p class="hero-copy mb-4">Una competencia pensada para nuevos jugadores: parejas de nivel parejo, partidos que cuentan y toda la energía de la comunidad PIPO.</p>
           <div class="hero-actions d-flex flex-column flex-sm-row gap-3">
-            <a class="btn btn-rookie-red" href="https://wa.me/543885629120?text=Hola%20PIPO%20P%C3%A1del%2C%20me%20interesa%20participar%20de%20la%20Rookie%20Cup%202026" target="_blank" rel="noopener"><i class="bi bi-whatsapp me-2"></i>Consultar inscripción</a>
+            <a class="btn btn-rookie-red" href="#fixture"><i class="bi bi-calendar-event me-2"></i>Ver próximos partidos</a>
             <a class="btn btn-rookie-light" href="reglamento_rookie_cup_2026.pdf"><i class="bi bi-file-earmark-arrow-down me-2"></i>Descargar reglamento</a>
           </div>
         </div>
         <div class="col-lg-6 order-1 order-lg-2 text-center">
-          <img class="hero-logo img-fluid" src="../img/PIPO_Rookie_Cup.png" alt="PIPO Rookie Cup 2026 - Copa para nuevos jugadores">
+          <img class="hero-logo img-fluid" src="PIPO_Rookie_Cup_logo_vector.svg" alt="PIPO Rookie Cup 2026 - Copa para nuevos jugadores">
         </div>
       </div>
     </div>
@@ -256,12 +370,19 @@
       <div class="container">
         <div class="quick-shell">
           <h2 class="h4 text-center fw-bold mb-3" id="accesos-title">Accesos rápidos</h2>
-          <div class="row row-cols-2 row-cols-lg-4 g-2 text-center">
+          <div class="row row-cols-2 row-cols-lg-5 g-2 text-center">
             <div class="col">
               <a class="quick-card d-block" href="#fixture">
                 <span class="quick-icon"><i class="bi bi-calendar3"></i></span>
                 <strong class="d-block">Fixture</strong>
                 <small class="text-secondary">Próximos partidos y cruces</small>
+              </a>
+            </div>
+            <div class="col">
+              <a class="quick-card d-block" href="#resultados">
+                <span class="quick-icon"><i class="bi bi-trophy-fill"></i></span>
+                <strong class="d-block">Resultados</strong>
+                <small class="text-secondary">Marcadores oficiales</small>
               </a>
             </div>
             <div class="col">
@@ -282,7 +403,7 @@
               <a class="quick-card whatsapp d-block" href="https://wa.me/543885629120?text=Hola%20PIPO%20P%C3%A1del%2C%20quiero%20m%C3%A1s%20informaci%C3%B3n%20sobre%20la%20Rookie%20Cup%202026" target="_blank" rel="noopener">
                 <span class="quick-icon"><i class="bi bi-whatsapp"></i></span>
                 <strong class="d-block">WhatsApp</strong>
-                <small class="text-secondary">Consultas e inscripción</small>
+                <small class="text-secondary">Consultas y novedades</small>
               </a>
             </div>
           </div>
@@ -296,22 +417,348 @@
           <div class="col-lg-8">
             <div class="section-kicker mb-2">Información oficial</div>
             <h2 class="section-title mb-3">Una copa para animarse.</h2>
-            <p class="lead lead-copy mb-0">La PIPO Rookie Cup nace para quienes están empezando a jugar, todavía no vivieron un torneo o quieren dar sus primeros pasos dentro de la comunidad PIPO. Va a ser competitiva, sí, pero con una condición clave: <strong>todas las parejas deben tener un nivel similar</strong>.</p>
+            <p class="lead lead-copy mb-0">La PIPO Rookie Cup reúne a 12 duplas que se animaron a vivir su primera experiencia competitiva dentro de la comunidad PIPO. La copa ya está en marcha y conserva su condición clave: <strong>partidos entre jugadores de nivel similar, con competencia real y buena onda</strong>.</p>
           </div>
           <div class="col-lg-4">
             <div class="level-note rounded-4 p-3">
               <strong class="d-block text-danger mb-1"><i class="bi bi-shield-check me-2"></i>Nivel cuidado por la organización</strong>
-              <span class="small text-secondary">Antes del sorteo se revisará que cada inscripción sea compatible con el espíritu Rookie.</span>
+              <span class="small text-secondary">La organización acompaña el desarrollo de la copa para cuidar el espíritu Rookie y la paridad entre las duplas.</span>
             </div>
           </div>
         </div>
 
         <div class="row row-cols-2 row-cols-lg-4 g-3 mb-5">
-          <div class="col"><div class="stat-card"><div class="stat-number">8</div><strong>Parejas</strong><p class="small text-secondary mb-0 mt-1">Cupo objetivo de esta edición.</p></div></div>
-          <div class="col"><div class="stat-card"><div class="stat-number">2</div><strong>Zonas</strong><p class="small text-secondary mb-0 mt-1">Cuatro parejas por grupo.</p></div></div>
-          <div class="col"><div class="stat-card"><div class="stat-number">3+</div><strong>Partidos</strong><p class="small text-secondary mb-0 mt-1">Todos juegan tres en la fase inicial.</p></div></div>
-          <div class="col"><div class="stat-card"><div class="stat-number">2</div><strong>Copas</strong><p class="small text-secondary mb-0 mt-1">Definición Oro y Plata.</p></div></div>
+          <div class="col"><div class="stat-card"><div class="stat-number">12</div><strong>Duplas</strong><p class="small text-secondary mb-0 mt-1">La edición superó el cupo inicial.</p></div></div>
+          <div class="col"><div class="stat-card"><div class="stat-number">11</div><strong>Partidos por dupla</strong><p class="small text-secondary mb-0 mt-1">Todos se enfrentan contra todos.</p></div></div>
+          <div class="col"><div class="stat-card"><div class="stat-number">66</div><strong>Partidos totales</strong><p class="small text-secondary mb-0 mt-1">Una liga con mucha continuidad.</p></div></div>
+          <div class="col"><div class="stat-card"><div class="stat-number">1</div><strong>Tabla general</strong><p class="small text-secondary mb-0 mt-1">Cada resultado cuenta.</p></div></div>
         </div>
+
+        <div class="mb-5" id="duplas">
+  <div class="section-kicker mb-2">Protagonistas</div>
+  <h3 class="display-5 fw-bold text-dark mb-2">
+    Las 12 duplas de la Rookie Cup
+  </h3>
+  <p class="text-secondary mb-4">
+    Conocé a quienes se animaron a vivir esta primera experiencia competitiva.
+  </p>
+
+  <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 g-4">
+
+    <!-- LOCOS DEL PÁDEL -->
+    <div class="col">
+      <article class="dupla-card">
+        <img
+          class="dupla-photo"
+          src="img/duplas/locos-del-padel.jpg"
+          alt="Dupla Locos del Pádel"
+          loading="lazy"
+          onerror="this.classList.add('d-none'); this.nextElementSibling.classList.remove('d-none');"
+        >
+        <div class="dupla-photo-placeholder d-none">
+          <div class="text-center">
+            <i class="bi bi-people-fill fs-1"></i>
+            <span class="d-block fw-bold mt-2">Foto próximamente</span>
+          </div>
+        </div>
+
+        <div class="p-3">
+          <h4 class="dupla-name mb-2">Locos del Pádel</h4>
+          <div class="dupla-players">
+            Lautaro Sauretti · Leonel Erazo
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <!-- BRILLOS -->
+    <div class="col">
+      <article class="dupla-card">
+        <img
+          class="dupla-photo"
+          src="img/duplas/brillos.jpg"
+          alt="Dupla Brillos"
+          loading="lazy"
+          onerror="this.classList.add('d-none'); this.nextElementSibling.classList.remove('d-none');"
+        >
+        <div class="dupla-photo-placeholder d-none">
+          <div class="text-center">
+            <i class="bi bi-people-fill fs-1"></i>
+            <span class="d-block fw-bold mt-2">Foto próximamente</span>
+          </div>
+        </div>
+
+        <div class="p-3">
+          <h4 class="dupla-name mb-2">Brillos</h4>
+          <div class="dupla-players">
+            Luciana Cristaldo · Nora Bustamante
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <!-- DUKES -->
+    <div class="col">
+      <article class="dupla-card">
+        <img
+          class="dupla-photo"
+          src="img/duplas/dukes.jpg"
+          alt="Dupla Dukes"
+          loading="lazy"
+          onerror="this.classList.add('d-none'); this.nextElementSibling.classList.remove('d-none');"
+        >
+        <div class="dupla-photo-placeholder d-none">
+          <div class="text-center">
+            <i class="bi bi-people-fill fs-1"></i>
+            <span class="d-block fw-bold mt-2">Foto próximamente</span>
+          </div>
+        </div>
+
+        <div class="p-3">
+          <h4 class="dupla-name mb-2">Dukes</h4>
+          <div class="dupla-players">
+            Juampy Vilte · David Vilte
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <!-- ROMPETORMENTAS -->
+    <div class="col">
+      <article class="dupla-card">
+        <img
+          class="dupla-photo"
+          src="img/duplas/rompetormentas.jpg"
+          alt="Dupla RompeTormentas"
+          loading="lazy"
+          onerror="this.classList.add('d-none'); this.nextElementSibling.classList.remove('d-none');"
+        >
+        <div class="dupla-photo-placeholder d-none">
+          <div class="text-center">
+            <i class="bi bi-people-fill fs-1"></i>
+            <span class="d-block fw-bold mt-2">Foto próximamente</span>
+          </div>
+        </div>
+
+        <div class="p-3">
+          <h4 class="dupla-name mb-2">RompeTormentas</h4>
+          <div class="dupla-players">
+            Tiago Perez · Lisandro Rondón
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <!-- DOS ZURDOS -->
+    <div class="col">
+      <article class="dupla-card">
+        <img
+          class="dupla-photo"
+          src="img/duplas/dos-zurdos.jpg"
+          alt="Dupla Dos Zurdos"
+          loading="lazy"
+          onerror="this.classList.add('d-none'); this.nextElementSibling.classList.remove('d-none');"
+        >
+        <div class="dupla-photo-placeholder d-none">
+          <div class="text-center">
+            <i class="bi bi-people-fill fs-1"></i>
+            <span class="d-block fw-bold mt-2">Foto próximamente</span>
+          </div>
+        </div>
+
+        <div class="p-3">
+          <h4 class="dupla-name mb-2">Dos Zurdos</h4>
+          <div class="dupla-players">
+            Ezequiel Bejarano · Marcelo Cruz
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <!-- JUNTOS, PERO NO REVUELTOS -->
+    <div class="col">
+      <article class="dupla-card">
+        <img
+          class="dupla-photo"
+          src="img/duplas/juntos-pero-no-revueltos.jpg"
+          alt="Dupla Juntos, pero no revueltos"
+          loading="lazy"
+          onerror="this.classList.add('d-none'); this.nextElementSibling.classList.remove('d-none');"
+        >
+        <div class="dupla-photo-placeholder d-none">
+          <div class="text-center">
+            <i class="bi bi-people-fill fs-1"></i>
+            <span class="d-block fw-bold mt-2">Foto próximamente</span>
+          </div>
+        </div>
+
+        <div class="p-3">
+          <h4 class="dupla-name mb-2">Juntos, pero no revueltos</h4>
+          <div class="dupla-players">
+            Javier Gutierrez · Silvia Borda
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <!-- LIMÓN Y SAL -->
+    <div class="col">
+      <article class="dupla-card">
+        <img
+          class="dupla-photo"
+          src="img/duplas/limon-y-sal.jpg"
+          alt="Dupla Limón y Sal"
+          loading="lazy"
+          onerror="this.classList.add('d-none'); this.nextElementSibling.classList.remove('d-none');"
+        >
+        <div class="dupla-photo-placeholder d-none">
+          <div class="text-center">
+            <i class="bi bi-people-fill fs-1"></i>
+            <span class="d-block fw-bold mt-2">Foto próximamente</span>
+          </div>
+        </div>
+
+        <div class="p-3">
+          <h4 class="dupla-name mb-2">Limón y Sal</h4>
+          <div class="dupla-players">
+            Santiago Cadena · Franco Cadena
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <!-- TERMINAL 1 -->
+    <div class="col">
+      <article class="dupla-card">
+        <img
+          class="dupla-photo"
+          src="img/duplas/terminal-1.jpg"
+          alt="Dupla Terminal 1"
+          loading="lazy"
+          onerror="this.classList.add('d-none'); this.nextElementSibling.classList.remove('d-none');"
+        >
+        <div class="dupla-photo-placeholder d-none">
+          <div class="text-center">
+            <i class="bi bi-people-fill fs-1"></i>
+            <span class="d-block fw-bold mt-2">Foto próximamente</span>
+          </div>
+        </div>
+
+        <div class="p-3">
+          <h4 class="dupla-name mb-2">Terminal 1</h4>
+          <div class="dupla-players">
+            Oscar Mario Pinedo · Integrante a confirmar
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <!-- TERMINAL 2 -->
+    <div class="col">
+      <article class="dupla-card">
+        <img
+          class="dupla-photo"
+          src="img/duplas/terminal-2.jpg"
+          alt="Dupla Terminal 2"
+          loading="lazy"
+          onerror="this.classList.add('d-none'); this.nextElementSibling.classList.remove('d-none');"
+        >
+        <div class="dupla-photo-placeholder d-none">
+          <div class="text-center">
+            <i class="bi bi-people-fill fs-1"></i>
+            <span class="d-block fw-bold mt-2">Foto próximamente</span>
+          </div>
+        </div>
+
+        <div class="p-3">
+          <h4 class="dupla-name mb-2">Terminal 2</h4>
+          <div class="dupla-players">
+            Integrantes a confirmar
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <!-- SUPER 45 -->
+    <div class="col">
+      <article class="dupla-card">
+        <img
+          class="dupla-photo"
+          src="img/duplas/super-45.jpg"
+          alt="Dupla Super 45"
+          loading="lazy"
+          onerror="this.classList.add('d-none'); this.nextElementSibling.classList.remove('d-none');"
+        >
+        <div class="dupla-photo-placeholder d-none">
+          <div class="text-center">
+            <i class="bi bi-people-fill fs-1"></i>
+            <span class="d-block fw-bold mt-2">Foto próximamente</span>
+          </div>
+        </div>
+
+        <div class="p-3">
+          <h4 class="dupla-name mb-2">Super 45</h4>
+          <div class="dupla-players">
+            Marcelo Soza · David Cadena
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <!-- CONEXIÓN PIPO -->
+    <div class="col">
+      <article class="dupla-card">
+        <img
+          class="dupla-photo"
+          src="img/duplas/conexion-pipo.jpg"
+          alt="Dupla Conexión PIPO"
+          loading="lazy"
+          onerror="this.classList.add('d-none'); this.nextElementSibling.classList.remove('d-none');"
+        >
+        <div class="dupla-photo-placeholder d-none">
+          <div class="text-center">
+            <i class="bi bi-people-fill fs-1"></i>
+            <span class="d-block fw-bold mt-2">Foto próximamente</span>
+          </div>
+        </div>
+
+        <div class="p-3">
+          <h4 class="dupla-name mb-2">Conexión PIPO</h4>
+          <div class="dupla-players">
+            Iván Jurado · Leonardo Morales
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <!-- REX -->
+    <div class="col">
+      <article class="dupla-card">
+        <img
+          class="dupla-photo"
+          src="img/duplas/rex.jpg"
+          alt="Dupla Rex"
+          loading="lazy"
+          onerror="this.classList.add('d-none'); this.nextElementSibling.classList.remove('d-none');"
+        >
+        <div class="dupla-photo-placeholder d-none">
+          <div class="text-center">
+            <i class="bi bi-people-fill fs-1"></i>
+            <span class="d-block fw-bold mt-2">Foto próximamente</span>
+          </div>
+        </div>
+
+        <div class="p-3">
+          <h4 class="dupla-name mb-2">Rex</h4>
+          <div class="dupla-players">
+            Paul Saiquita · Elías Burgos
+          </div>
+        </div>
+      </article>
+    </div>
+
+  </div>
+</div>
 
         <div class="rookie-panel p-4 p-lg-5 mb-5">
           <div class="row g-4 align-items-center">
@@ -323,7 +770,7 @@
             <div class="col-lg-6">
               <div class="d-grid gap-3">
                 <div class="check-item"><i class="bi bi-check-circle-fill"></i><div><strong>Partidos parejos</strong><div class="small text-secondary">Se prioriza la igualdad de nivel por encima de la categoría declarada.</div></div></div>
-                <div class="check-item"><i class="bi bi-check-circle-fill"></i><div><strong>Experiencia completa</strong><div class="small text-secondary">Zona, tabla, cruces, fotos, comunidad y jornada final.</div></div></div>
+                <div class="check-item"><i class="bi bi-check-circle-fill"></i><div><strong>Experiencia completa</strong><div class="small text-secondary">Liga, tabla, fixture, fotos, comunidad y seguimiento de cada fecha.</div></div></div>
                 <div class="check-item"><i class="bi bi-check-circle-fill"></i><div><strong>Competencia con buena onda</strong><div class="small text-secondary">Queremos intensidad dentro de la cancha y respeto antes, durante y después.</div></div></div>
               </div>
             </div>
@@ -333,29 +780,29 @@
         <div id="formato">
           <div class="text-center mb-4">
             <div class="section-kicker mb-2">Así se juega</div>
-            <h3 class="display-4 fw-bold text-dark mb-2">Un formato corto, claro y con continuidad</h3>
-            <p class="text-secondary mx-auto mb-0" style="max-width: 720px;">Cada pareja tiene una fase inicial completa y después sigue compitiendo en el cuadro que le corresponde.</p>
+            <h3 class="display-4 fw-bold text-dark mb-2">Todos contra todos, de principio a fin</h3>
+            <p class="text-secondary mx-auto mb-0" style="max-width: 720px;">Las 12 duplas comparten una misma tabla. Cada partido suma experiencia y puede cambiar las posiciones.</p>
           </div>
           <div class="row g-3 mb-5">
             <div class="col-md-4">
               <article class="format-card">
                 <div class="format-step">1</div>
-                <h4 class="h2 fw-bold">Fase de zonas</h4>
-                <p class="mb-0 text-white-50">Dos zonas de cuatro. Todos contra todos dentro de cada zona: tres partidos por pareja.</p>
+                <h4 class="h2 fw-bold">Liga completa</h4>
+                <p class="mb-0 text-white-50">Cada dupla enfrenta una vez a las otras once. No hay zonas: todos compiten en la misma tabla.</p>
               </article>
             </div>
             <div class="col-md-4">
               <article class="format-card blue">
                 <div class="format-step">2</div>
-                <h4 class="h2 fw-bold">Semifinales</h4>
-                <p class="mb-0 text-white-50">Los puestos 1° y 2° avanzan a Oro. Los puestos 3° y 4° continúan en Plata.</p>
+                <h4 class="h2 fw-bold">Coordinación</h4>
+                <p class="mb-0 text-white-50">Los capitanes acuerdan día y horario con su rival. PIPO confirma la disponibilidad de la cancha.</p>
               </article>
             </div>
             <div class="col-md-4">
               <article class="format-card red">
                 <div class="format-step">3</div>
-                <h4 class="h2 fw-bold">Finales</h4>
-                <p class="mb-0 text-white-50">Los ganadores de cada semifinal juegan las finales Oro y Plata en una jornada especial.</p>
+                <h4 class="h2 fw-bold">Definición por tabla</h4>
+                <p class="mb-0 text-white-50">Los resultados, sets y games quedan registrados para seguir la evolución de cada dupla.</p>
               </article>
             </div>
           </div>
@@ -371,7 +818,7 @@
               </div>
               <div class="accordion-item">
                 <h4 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqTwo">¿Cuántos partidos juega cada pareja?</button></h4>
-                <div id="faqTwo" class="accordion-collapse collapse" data-bs-parent="#rookieFaq"><div class="accordion-body text-secondary">Con ocho parejas confirmadas, todos jugarán tres partidos de zona y al menos un cruce de semifinal. Quienes lleguen a una final completarán cinco partidos.</div></div>
+                <div id="faqTwo" class="accordion-collapse collapse" data-bs-parent="#rookieFaq"><div class="accordion-body text-secondary">Con 12 duplas confirmadas y formato todos contra todos, cada pareja disputará 11 encuentros.</div></div>
               </div>
               <div class="accordion-item">
                 <h4 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqThree">¿Cómo se coordinan los horarios?</button></h4>
@@ -396,11 +843,11 @@
         </div>
 
         <div class="text-center py-4" id="contacto">
-          <div class="section-kicker mb-2">¿Es tu momento?</div>
-          <h3 class="display-4 fw-bold text-dark">Animate a jugar tu primera copa.</h3>
-          <p class="text-secondary mx-auto mb-4" style="max-width: 650px;">Contanos quiénes forman la pareja y qué disponibilidad tienen. Nosotros revisamos el nivel y los acompañamos en el ingreso.</p>
+          <div class="section-kicker mb-2">La copa ya está en juego</div>
+          <h3 class="display-4 fw-bold text-dark">Vení a acompañar a las duplas.</h3>
+          <p class="text-secondary mx-auto mb-4" style="max-width: 650px;">Cada partido es una nueva experiencia para nuestros jugadores. La comunidad está invitada a acercarse, alentar y vivir la Rookie Cup desde la cancha.</p>
           <div class="d-flex flex-column flex-sm-row justify-content-center gap-3">
-            <a class="btn btn-lg btn-rookie-red px-4" href="https://wa.me/543885629120?text=Hola%20PIPO%20P%C3%A1del%2C%20queremos%20participar%20en%20la%20Rookie%20Cup%202026.%20Nuestra%20disponibilidad%20es%3A" target="_blank" rel="noopener"><i class="bi bi-whatsapp me-2"></i>Hablar con PIPO</a>
+            <a class="btn btn-lg btn-rookie-red px-4" href="#fixture"><i class="bi bi-calendar-event me-2"></i>Ver partidos de hoy</a>
             <a class="btn btn-lg btn-outline-primary px-4 fw-bold" href="reglamento_rookie_cup_2026.pdf"><i class="bi bi-file-earmark-pdf me-2"></i>Ver reglamento</a>
           </div>
         </div>
@@ -408,29 +855,103 @@
     </section>
 
     <section class="py-5 bg-light border-top" aria-label="Seguimiento de la copa">
-      <div class="container">
-        <div class="row g-3">
-          <div class="col-md-4" id="fixture">
-            <div class="stat-card">
-              <span class="quick-icon mx-0"><i class="bi bi-calendar3"></i></span>
-              <h3 class="h2 fw-bold mb-2">Fixture</h3>
-              <p class="text-secondary mb-0">Los cruces y horarios se publicarán cuando se confirmen las parejas y se realice el sorteo de zonas.</p>
+      <div class="container py-lg-4">
+        <div id="fixture" class="mb-5">
+          <div class="section-kicker mb-2">Próxima jornada</div>
+          <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-end gap-2 mb-4">
+            <div>
+              <h2 class="section-title mb-2">Partidos de hoy</h2>
+              <p class="text-secondary mb-0">Miércoles 21 de octubre · PIPO Pádel</p>
+            </div>
+            <span class="badge rounded-pill text-bg-primary px-3 py-2 fs-6">3 partidos programados</span>
+          </div>
+
+          <div class="row g-3">
+            <div class="col-lg-4">
+              <article class="schedule-card p-4">
+                <span class="schedule-time mb-3"><i class="bi bi-clock me-2"></i>16:00</span>
+                <div class="matchup text-center">
+                  <strong>Dos Zurdos</strong><span class="vs">VS</span><strong>Terminal 1</strong>
+                </div>
+              </article>
+            </div>
+            <div class="col-lg-4">
+              <article class="schedule-card p-4">
+                <span class="schedule-time mb-3"><i class="bi bi-clock me-2"></i>20:00</span>
+                <div class="matchup text-center">
+                  <strong>Brillos</strong><span class="vs">VS</span><strong>Conexión PIPO</strong>
+                </div>
+              </article>
+            </div>
+            <div class="col-lg-4">
+              <article class="schedule-card p-4">
+                <span class="schedule-time mb-3"><i class="bi bi-clock me-2"></i>21:00</span>
+                <div class="matchup text-center">
+                  <strong>Locos del Pádel</strong><span class="vs">VS</span><strong>Rex</strong>
+                </div>
+              </article>
             </div>
           </div>
-          <div class="col-md-4" id="tabla">
-            <div class="stat-card">
-              <span class="quick-icon mx-0"><i class="bi bi-bar-chart-fill"></i></span>
-              <h3 class="h2 fw-bold mb-2">Tabla</h3>
-              <p class="text-secondary mb-0">Las posiciones de las zonas A y B se habilitarán con los primeros resultados oficiales.</p>
+        </div>
+
+        <div id="resultados" class="pt-3 mb-5">
+          <span id="galeria" aria-hidden="true"></span>
+          <div class="section-kicker mb-2">Resultados oficiales y galería</div>
+          <h2 class="section-title mb-2">Así comenzó la copa</h2>
+          <p class="lead-copy mb-4">Los primeros encuentros ya dejaron victorias, aprendizaje y señales de todo lo que puede crecer cada dupla durante el torneo.</p>
+
+          <div class="row g-4">
+            <div class="col-lg-6">
+              <article class="result-card">
+                <img class="result-photo" src="img/partidos/2026-10-20-rompetormentas-limon-y-sal.jpg" alt="RompeTormentas y Limón y Sal después del primer partido de la PIPO Rookie Cup" onerror="this.classList.add('d-none'); this.nextElementSibling.classList.remove('d-none');">
+                <div class="photo-placeholder d-none text-center p-4"><div><i class="bi bi-camera-fill fs-1 d-block mb-2"></i><strong>Foto del encuentro</strong><br><small>RompeTormentas vs. Limón y Sal</small></div></div>
+                <div class="p-4">
+                  <div class="winner-label mb-2"><i class="bi bi-trophy-fill me-2"></i>Ganador · Limón y Sal</div>
+                  <div class="d-flex flex-column flex-sm-row justify-content-between gap-3 align-items-sm-center mb-3">
+                    <h3 class="h2 fw-bold mb-0">RompeTormentas vs. Limón y Sal</h3>
+                    <span class="score-pill text-nowrap">0-6 / 2-6</span>
+                  </div>
+                  <p class="text-secondary mb-1"><i class="bi bi-calendar3 me-2"></i>20 de octubre · 19:00</p>
+                  <p class="mb-0 mt-3">Limón y Sal abrió la copa con una victoria firme. Para RompeTormentas fue su primer partido oficial y los nervios propios del debut pudieron influir, pero esta experiencia ya les deja una base concreta para crecer en los próximos encuentros.</p>
+                </div>
+              </article>
+            </div>
+
+            <div class="col-lg-6">
+              <article class="result-card">
+                <img class="result-photo" src="img/partidos/2026-10-20-dukes-super-45.jpg" alt="Dukes y Super 45 después de su partido de la PIPO Rookie Cup" onerror="this.classList.add('d-none'); this.nextElementSibling.classList.remove('d-none');">
+                <div class="photo-placeholder d-none text-center p-4"><div><i class="bi bi-camera-fill fs-1 d-block mb-2"></i><strong>Foto del encuentro</strong><br><small>Dukes vs. Super 45</small></div></div>
+                <div class="p-4">
+                  <div class="winner-label mb-2"><i class="bi bi-trophy-fill me-2"></i>Ganador · Super 45</div>
+                  <div class="d-flex flex-column flex-sm-row justify-content-between gap-3 align-items-sm-center mb-3">
+                    <h3 class="h2 fw-bold mb-0">Dukes vs. Super 45</h3>
+                    <span class="score-pill text-nowrap">1-6 / 6-3 / 1-6</span>
+                  </div>
+                  <p class="text-secondary mb-1"><i class="bi bi-calendar3 me-2"></i>20 de octubre · 20:00</p>
+                  <p class="mb-0 mt-3">Fue un partido muy disputado y con reacción de Dukes en el segundo set. Aunque varias pelotas de definición no entraron como esperaban, dejaron claro que tienen juego para competir y ganar en las próximas fechas. Super 45 sostuvo el ritmo y cerró el encuentro en el tercer set.</p>
+                </div>
+              </article>
             </div>
           </div>
-          <div class="col-md-4" id="galeria">
-            <div class="stat-card">
-              <span class="quick-icon mx-0"><i class="bi bi-images"></i></span>
-              <h3 class="h2 fw-bold mb-2">Galería</h3>
-              <p class="text-secondary mb-0">Este espacio irá creciendo con las fotos, debuts y mejores momentos de cada fecha.</p>
-            </div>
+        </div>
+
+        <div id="tabla" class="pt-3">
+          <div class="section-kicker mb-2">Tabla general</div>
+          <h2 class="section-title mb-3">Primeros movimientos</h2>
+          <div class="table-responsive rounded-4 border bg-white shadow-sm">
+            <table class="table table-hover align-middle mb-0">
+              <thead class="table-dark">
+                <tr><th>Dupla</th><th class="text-center">PJ</th><th class="text-center">PG</th><th class="text-center">PP</th><th class="text-center">Sets</th><th class="text-center">Games</th></tr>
+              </thead>
+              <tbody>
+                <tr><th>Limón y Sal</th><td class="text-center">1</td><td class="text-center">1</td><td class="text-center">0</td><td class="text-center">2-0</td><td class="text-center">12-2</td></tr>
+                <tr><th>Super 45</th><td class="text-center">1</td><td class="text-center">1</td><td class="text-center">0</td><td class="text-center">2-1</td><td class="text-center">15-8</td></tr>
+                <tr><th>Dukes</th><td class="text-center">1</td><td class="text-center">0</td><td class="text-center">1</td><td class="text-center">1-2</td><td class="text-center">8-15</td></tr>
+                <tr><th>RompeTormentas</th><td class="text-center">1</td><td class="text-center">0</td><td class="text-center">1</td><td class="text-center">0-2</td><td class="text-center">2-12</td></tr>
+              </tbody>
+            </table>
           </div>
+          <p class="small text-secondary mt-2 mb-0">La tabla se completará con las restantes duplas a medida que disputen su primer partido.</p>
         </div>
       </div>
     </section>
