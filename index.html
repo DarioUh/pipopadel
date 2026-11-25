@@ -172,6 +172,79 @@
     .whats-float:hover{ transform:translateY(-6px); }
     .whats-float img{ width:36px; height:36px; }
 
+
+    /* Hub de torneos PIPO */
+    .tournaments-hub{
+      width:min(1180px,94%);
+      margin:0 auto;
+      padding:34px 0;
+    }
+    .tournament-main{
+      overflow:hidden;
+      color:#fff;
+      background:
+        radial-gradient(circle at 85% 10%,rgba(201,154,50,.25),transparent 28%),
+        linear-gradient(145deg,#020b18 0%,#061936 55%,#0a2b5c 100%);
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:24px;
+      box-shadow:0 18px 50px rgba(0,0,0,.38);
+    }
+    .tournament-main-logo{
+      width:min(850px,100%);
+      max-height:390px;
+      object-fit:contain;
+      display:block;
+      margin:auto;
+      filter:drop-shadow(0 14px 28px rgba(0,0,0,.35));
+    }
+    .tournament-eyebrow{
+      color:#f4da8e;
+      font-size:.88rem;
+      font-weight:700;
+      letter-spacing:.15em;
+      text-transform:uppercase;
+    }
+    .tournament-main h2{color:#fff;font-size:clamp(1.7rem,4vw,3rem)}
+    .tournament-main .lead{font-size:clamp(1.05rem,2vw,1.35rem)}
+    .btn-clausura{
+      color:#07142c;
+      font-weight:800;
+      border:0;
+      background:linear-gradient(135deg,#f2d47b,#c99a32);
+    }
+    .btn-clausura:hover{color:#07142c;background:#f7df98;transform:translateY(-2px)}
+    .past-tournament{
+      height:100%;
+      overflow:hidden;
+      color:#182033;
+      background:rgba(255,255,255,.94);
+      border:1px solid rgba(8,35,75,.12);
+      border-radius:20px;
+      box-shadow:0 12px 34px rgba(0,0,0,.22);
+      transition:transform .25s ease,box-shadow .25s ease;
+    }
+    .past-tournament:hover{transform:translateY(-5px);box-shadow:0 18px 42px rgba(0,0,0,.28)}
+    .past-tournament-image{
+      height:190px;
+      padding:14px;
+      display:grid;
+      place-items:center;
+      background:linear-gradient(135deg,#edf2f9,#fff8e8);
+    }
+    .past-tournament-image img{width:100%;height:100%;object-fit:contain}
+    .tournament-placeholder{color:#647087;font-weight:600}
+    .past-badge{
+      display:inline-block;
+      padding:.35rem .7rem;
+      color:#fff;
+      background:#647087;
+      border-radius:999px;
+      font-size:.78rem;
+      font-weight:700;
+      letter-spacing:.05em;
+      text-transform:uppercase;
+    }
+
     @media (max-width:768px){
       .card-viewport{ width:92%; padding:18px; }
       .carousel-item img{ width:96%; max-height:380px; }
@@ -214,78 +287,83 @@
       </ul>
     </div>
   </section>
-<section id="rookie-cup" class="py-5">
-  <div class="container">
+<section id="torneos" class="py-5">
+  <div class="tournaments-hub">
 
-    <div class="card shadow-lg border-0 rounded-4">
-      <div class="card-body p-4">
-
-        <!-- Imagen torneo -->
-        <div class="text-center">
-          <img src="img/PIPO_Rookie_Cup.png"
-               alt="Rookie cup 2026"
-               class="img-fluid mx-auto d-block rounded-4 shadow"
-               style="max-width: 100%; height: auto;">
+    <!-- Torneo vigente: protagonista -->
+    <article class="tournament-main p-3 p-md-5 mb-4">
+      <div class="row align-items-center g-4">
+        <div class="col-lg-7">
+          <img src="clausura2026/img/Logotipo%20abstracto%20PIPO%20Clausura%202026.png"
+               alt="Logo PIPO Clausura 2026"
+               class="tournament-main-logo">
         </div>
-
-        <hr>
-
-
-        <hr>
-
-        <!-- Ingreso al Torneo -->
-        <div class="text-center mt-4">
-          <h2>🎾PIPO ROOKIE CUP 2026</h2>
-          <h4>Copa para los nuevos jugadores</h4>
-          <p>
-            Mirá el fixture, tabla de posiciones y toda la info de la copa
+        <div class="col-lg-5 text-center text-lg-start">
+          <p class="tournament-eyebrow mb-2">Torneo en juego</p>
+          <h2 class="mb-3">PIPO CLAUSURA 2026</h2>
+          <p class="lead mb-2">La última revancha del año</p>
+          <p class="mb-4 text-white-50">
+            Once duplas, fixture completo, tabla de posiciones, reglamento y toda la actualidad de la copa.
           </p>
-
-          <a href="https://dariouh.github.io/pipopadel/rookie/rookie_cup_2026.html"
+          <a href="https://dariouh.github.io/pipopadel/clausura2026/"
              target="_blank"
-             class="btn btn-success btn-lg px-5 py-3 rounded-pill shadow">
-            📝 Ingresar a la copa
+             rel="noopener"
+             class="btn btn-clausura btn-lg px-5 py-3 rounded-pill shadow">
+            🎾 Entrar al Clausura
           </a>
         </div>
-
       </div>
+    </article>
+
+    <!-- Torneos anteriores -->
+    <div class="text-center mb-3">
+      <h3 class="h4 mb-1">Torneos anteriores</h3>
+      <p class="mb-0">Reviví sus resultados, protagonistas y mejores momentos.</p>
     </div>
 
-  </div>
-</section>
-<section id="liga-libre" class="py-5">
-  <div class="container">
+    <div class="row g-4 justify-content-center">
+      <div class="col-12 col-md-6">
+        <article class="past-tournament">
+          <div class="past-tournament-image">
+            <img src="img/PIPO_Rookie_Cup.png"
+                 alt="PIPO Rookie Cup 2026"
+                 onerror="this.classList.add('d-none');this.nextElementSibling.classList.remove('d-none');">
+            <div class="tournament-placeholder d-none">Imagen de la Rookie Cup</div>
+          </div>
+          <div class="p-4 text-center">
+            <span class="past-badge mb-3">Torneo finalizado</span>
+            <h3 class="h5 mb-2">PIPO Rookie Cup 2026</h3>
+            <p class="mb-3">La primera experiencia competitiva para nuevos jugadores.</p>
+            <a href="https://dariouh.github.io/pipopadel/rookie/rookie_cup_2026.html"
+               target="_blank"
+               rel="noopener"
+               class="btn btn-outline-primary rounded-pill px-4">
+              Ver la Rookie Cup
+            </a>
+          </div>
+        </article>
+      </div>
 
-    <div class="card shadow-lg border-0 rounded-4">
-      <div class="card-body p-4">
-
-        <!-- Imagen torneo -->
-        <div class="text-center">
-          <img src="img/TORNEO_apertura2026.png"
-               alt="Torneo Apertura 2026"
-               class="img-fluid mx-auto d-block rounded-4 shadow"
-               style="max-width: 100%; height: auto;">
-        </div>
-
-        <hr>
-
-
-        <hr>
-
-        <!-- Ingreso al Torneo -->
-        <div class="text-center mt-4">
-          <h4>🎾Torneo Apertura 2026</h4>
-          <p>
-            Este torneo finalizó
-          </p>
-
-          <a href="https://dariouh.github.io/pipopadel/apertura2026/torneo_apertura_2026.html"
-             target="_blank"
-             class="btn btn-success btn-lg px-5 py-3 rounded-pill shadow">
-            📝 Ingresar a info del TORNEO
-          </a>
-        </div>
-
+      <div class="col-12 col-md-6">
+        <article class="past-tournament">
+          <div class="past-tournament-image">
+            <img src="img/TORNEO_apertura2026.png"
+                 alt="Torneo Apertura 2026"
+                 onerror="this.classList.add('d-none');this.nextElementSibling.classList.remove('d-none');">
+            <div class="tournament-placeholder d-none">Imagen del Torneo Apertura</div>
+          </div>
+          <div class="p-4 text-center">
+            <span class="past-badge mb-3">Torneo finalizado</span>
+            <h3 class="h5 mb-2">Torneo Apertura 2026</h3>
+            <p class="mb-3">Volvé a recorrer la competencia que abrió la temporada PIPO.</p>
+            <a href="https://dariouh.github.io/pipopadel/apertura2026/torneo_apertura_2026.html"
+               target="_blank"
+               rel="noopener"
+               class="btn btn-outline-primary rounded-pill px-4">
+              Ver el Apertura
+            </a>
+          </div>
+        </article>
       </div>
     </div>
 
